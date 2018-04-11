@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>侧边栏功能实现</title>
+	<!-- 引入LayUI样式 -->
+	<link rel="stylesheet" href="../../../../public/static/layui/css/layui.css">
+	<!-- 引入bootstrap.min.css -->
+	<link rel="stylesheet" href="../../../../public/static/bs/css/bootstrap.min.css">
+	<!-- 引入jquery -->
+	<script src="../../../../public/static/jqueryui/jquery.js"></script>
+	<!-- 引入boot.min.js -->
+	<script src="../../../../public/static/bs/js/bootstrap.min.js"></script>
+
+
+
+
+	<!-- <script src="../../../../public/static/layui/layui.js"></script> -->
+	<style>
+	    /*侧边栏定位*/
+		.layui-fixbar{
+			position: absolute;
+			position: fixed;
+			top:200px;
+			right: 0px;
+		}
+		/*二维码大小*/
+		#qr{
+			width: 320px;
+			height: 320px;
+		
+		}
+		/*二维码位置*/
+		#qrimage{
+			margin-left: 30px;
+		}
+		/*模态框位置*/
+		#all{
+			margin-top: 150px;
+		}
+
+
+
+		#share{
+			position: absolute;;
+		    top:50px;
+		    right: 50px;
+		}
+	</style>
+</head>
+<body>
+	<!-- 引入背景音乐 -->
+	<audio id="music" src="music.mp3" >不支持audio标签</audio>
+	<!-- 侧边栏代码 -->
+	<div>
+		<ul class="layui-fixbar">
+		<li>
+			<a href="http://www.tp5.com/index/index/index" type="button"  data-toggle="tooltip" data-placement="top" title="返回首页">
+				<i class="layui-icon" style="font-size: 28px">&#xe68e;</i>
+			</a>
+		</li>
+		<li>
+			<a   onclick="play()";>
+				<i  id="ic" class="layui-icon" style="font-size: 28px">&#xe652;</i>
+			</a>
+		</li>
+		<li>
+			<a  data-toggle="tooltip" data-placement="top" title="与我交流"  href="tencent://message/?uin=602060558&Site=http://vps.shuidazhe.com&Menu=yes">
+			<i  class="layui-icon" style="font-size: 28px">&#xe63a;</i>
+		    </a>
+		</li>
+		<li>
+			<a type="button"  data-toggle="modal" data-target=".bs-example-modal-sm">
+		    <i class="layui-icon" style="font-size: 28px">&#xe611;</i>
+		    </a> 
+		</li>
+	</ul>
+	</div>
+
+
+
+   <!-- 模态框 -->
+	<div  class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-sm" id="all">
+    <div class="modal-content"  id="qr"><br/>
+    	<p style=" text-align: center"><strong>欢迎关注个人微信公众号</strong></p>
+
+       <img id="qrimage" src="qrcode.jpg"/>
+    </div>
+  </div>
+  </div>
+	
+</body>
+<script>
+        // 播放/暂停背景音乐
+        var isPlaying =false; 
+        function play() {
+            var player = document.getElementById('music');
+            if (isPlaying) {
+                // 如果正在播放, 停止播放并停止读取此音乐文件
+                player.pause();
+
+                
+            } else {
+               
+                player.play();
+                
+            }
+            isPlaying = !isPlaying;//转换播放状态
+        }
+        //转换播放图标
+        var tag=false;
+        $('#ic').click(
+        	function(){
+        		
+        		if(!tag)
+        		{
+        			$('#ic').html("&#xe651");
+        		}
+        		else
+        		{
+        			$('#ic').html("&#xe652");
+        		}
+        		tag =!tag;
+        	});
+       //启动二维码弹出框
+    //   $(function (){   
+    // $("#example").popover();  
+    //     });  
+
+    
+    //启动提示框
+    $(function () {
+     $('[data-toggle="tooltip"]').tooltip()
+     })
+   
+</script>
+
+</html>

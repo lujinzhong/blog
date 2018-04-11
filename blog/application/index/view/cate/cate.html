@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>blog</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <!-- bs的模态框样式 -->
+<link rel="stylesheet" href="__STATIC__/bs/css/modal.css">
+<link rel="stylesheet" href="__STATIC__/layui/css/layui.css">
+<link href="__STATIC__/style/lady.css" type="text/css" rel="stylesheet" />
+<script type='text/javascript' src='images/js/ismobile.js'></script>
+<script type="text/javascript" src="__STATIC__/jqueryui/jquery.js"></script>
+<link rel="stylesheet" href="__STATIC__/shareandsidebar.css">
+        <link rel="stylesheet" href="__STATIC__/bs/css/tooltip.css">
+        <link rel="stylesheet" href="__STATIC__/shareandsidebar.css">
+        <!-- <link rel="stylesheet" href="__STATIC__/bs/css/pagination.css"> -->
+        <script src="__STATIC__/bs/js/bootstrap.min.js"></script>
+    <style>
+        /*返回顶部按钮样式*/
+         .scrolltop{
+            position: absolute;
+            position: fixed;
+            left:1250px;
+            top:540px;
+            display: none;
+            
+         }
+</style>
+</head>
+
+<body>
+    <!-- 添加侧边栏 -->
+    {include file="./common/sidebar"/}
+    <!-- 添加侧边栏 -->
+
+{include file="./common/header"/}
+
+<!--顶部通栏-->
+
+
+<div class="position">
+	<a href="{:url('index/index/index')}">主页</a> 
+	> <a href='#' >{$list[0]['catename']}</a> > 
+	 </div>
+
+<div class="overall">
+
+	<div class="left">
+			{volist name='list' id='vo'}
+				<div class="xnews2">
+				<div class="pic"><a target="_blank" href="20160920156279.html"><img src="__STATIC__/uploads/{$vo.pic}" alt="{$vo.title}"/></a></div>
+				<div class="dec">
+				<h3>
+					<a target="_blank" href="{:url('index/article/index',['id'=>$vo.id])}">{$vo.title}</a>
+					<!-- 这里的id是文章的id -->
+				</h3>
+				<div class="time">发布时间:{$vo['time']|date="Y-m-d H:i:s",###}</div>
+				<p>
+					{$vo.desc}
+                 </p>
+                 <div class="time">
+                 	  <p>
+                 	    关键词：{$vo.keywords}
+                     </p>
+                 </div>
+                
+				<div class="time"> <a href={:url('index/cate/index',['cateid'=>$vo.cateid])}>{$vo.catename}</a>  
+					&nbsp;&nbsp;&nbsp;&nbsp;点击量：{$vo.click} 
+				</div>
+				</div>
+				</div>
+				
+      {/volist}
+
+				
+				<div class="pages">
+				<div class="plist" >
+				{$list->render()}
+				</div>
+				</div>
+	</div>
+	<!-- 右侧各种广告 -->
+{include file='common/right'/}
+	
+</div>
+{include file="common/footer"/}
+
+<div style="display:none;"><script src='goto/my-65537.js' language='javascript'></script><script src="images/js/count_zixun.js" language="JavaScript"></script></div>
+
+</body>
+<script>
+    //返回顶部
+    $(document).ready(function(){  
+    $(".scrolltop").hide();  
+    $(function () {  
+        //设置高度  
+        var height=100;  
+        //scroll() 方法为滚动事件  
+        $(window).scroll(function(){  
+            if ($(window).scrollTop()>height){  
+                $(".scrolltop").fadeIn(500);  
+            }else{  
+                $(".scrolltop").fadeOut(500);  
+                }  
+        });  
+        $(".scrolltop").click(function(){  
+            $('body,html').animate({scrollTop:0},100);  
+            return false;  
+        });  
+    });  
+});  
+</script>
+<!-- 控制侧边栏的js代码 -->
+<script src="__STATIC__/sidebar.js"></script>
+</html>

@@ -1,0 +1,23 @@
+.layui-fixbar{
+			position: absolute;
+			position: fixed;
+			top:200px;
+			right: 0px;
+		}
+		#share{
+			position: absolute;;
+		    top:50px;
+		    right: 50px;
+		}
+		#qr{
+			width: 320px;
+			height: 320px;
+		
+		}
+		#qrimage{
+			margin-left: 30px;
+		}
+		/*模态框位置*/
+		#all{
+			margin-top: 150px;
+		}

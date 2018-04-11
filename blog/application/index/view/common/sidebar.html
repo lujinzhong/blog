@@ -1,0 +1,39 @@
+ <!-- 背景音乐 -->
+<audio id="music" src="__STATIC__/music/music.mp3" >不支持audio标签</audio>
+	<!-- 侧边栏 -->
+	<div>
+		<ul class="layui-fixbar">
+		<li>
+			<a href="http://www.tp5.com/index/index/index" type="button"  data-toggle="tooltip" data-placement="top" title="返回首页">
+				<i class="layui-icon" style="font-size: 28px">&#xe68e;</i>
+			</a>
+		</li>
+		<li>
+			<a   onclick="play()";>
+				<i  id="ic" class="layui-icon" style="font-size: 28px">&#xe652;</i>
+			</a>
+		</li>
+		<li>
+			<a  data-toggle="tooltip" data-placement="left" title="与我交流"  href="tencent://message/?uin=602060558&Site=http://vps.shuidazhe.com&Menu=yes">
+			<i  class="layui-icon" style="font-size: 28px">&#xe63a;</i>
+		    </a>
+		</li>
+		<li>
+			<a type="button"  data-toggle="modal" data-target=".bs-example-modal-sm">
+		    <i class="layui-icon" style="font-size: 28px">&#xe611;</i>
+		    </a> 
+		</li>
+	</ul>
+
+
+	</div>
+   <!-- 模态框 -->
+	<div  class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-sm" id="all">
+    <div class="modal-content"  id="qr"><br/>
+    	<p style=" text-align: center"><strong>欢迎关注个人微信公众号</strong></p>
+
+       <img id="qrimage" src="__STATIC__/images/qrcode.jpg"/>
+    </div>
+  </div>
+  </div>

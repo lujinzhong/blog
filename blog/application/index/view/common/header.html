@@ -1,0 +1,26 @@
+ <div class="ladytop">
+            <div class="nav">
+                <div class="left"><a href="{:url('index/index/index')}"><img src="__STATIC__/images/logo1.png" alt="主页"></a></div>
+                <div class="right">
+                <div class="box">
+                {volist name='cates' id='vo'}
+                 <a href="{:url('index/cate/index',['cateid'=>$vo.id])}"  rel='dropmenu209'>{$vo.catename}</a> 
+                 {/volist}
+                 </div>
+                </div>
+            </div>
+        </div>
+
+<div class="hotmenu">
+	<div class="con">友情链接：
+        {volist name="l" id="ll"}
+        <a href='{$ll.url}' target="_blank">{$ll.title}</a>&nbsp;&nbsp;
+        {/volist} 
+        <!-- <a href='#'>生活妙招</a> 
+        <a href='#'>星座</a>
+        <a href='#'>亲子</a>
+        <a href='#'>汽车</a> 
+        <a href='#'>宠物百科</a>
+        <a href='#'>家居</a> -->
+    </div>
+</div>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html><head>
+	    <meta charset="utf-8">
+    <title>blog</title>
+
+    <meta name="description" content="Dashboard">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!--Basic Styles-->
+    <link href="__STATIC__/admin/style/bootstrap.css" rel="stylesheet">
+    <link href="__STATIC__/admin/style/font-awesome.css" rel="stylesheet">
+    <link href="__STATIC__/admin/style/weather-icons.css" rel="stylesheet">
+
+    <!--Beyond styles-->
+    <link id="beyond-link" href="__STATIC__/admin/style/beyond.css" rel="stylesheet" type="text/css">
+    <link href="__STATIC__/admin/style/demo.css" rel="stylesheet">
+    <link href="__STATIC__/admin/style/typicons.css" rel="stylesheet">
+    <link href="__STATIC__/admin/style/animate.css" rel="stylesheet">
+    
+</head>
+<body>
+	<!-- 头部 -->
+  {include file="common/top"/}
+	<!-- /头部 -->
+	
+	<div class="main-container container-fluid">
+		<div class="page-container">
+			<!-- Page Sidebar -->
+           {include file="common/left"/}
+            <!-- /Page Sidebar -->
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Page Breadcrumb -->
+                <div class="page-breadcrumbs">
+                    <ul class="breadcrumb">
+                                        <li>
+                        <a href="{:url('index/index')}">系统</a>
+                    </li>
+                                        <li class="active">文章管理</li>
+                                        </ul>
+                </div>
+                <!-- /Page Breadcrumb -->
+
+                <!-- Page Body -->
+                <div class="page-body">
+                    
+<button type="button" tooltip="添加新文章" class="btn btn-sm btn-azure btn-addon" onClick="javascript:window.location.href = '{:url('article/add')}'"> <i class="fa fa-plus"></i> Add
+</button>
+<div class="row">
+    <div class="col-lg-12 col-sm-12 col-xs-12">
+        <div class="widget">
+            <div class="widget-body">
+                <div class="flip-scroll">
+                    <table class="table table-bordered table-hover">
+                        <thead class="">
+                            <tr>
+                                <!-- <th class="text-center" width="8%">id</th> -->
+                                <th class="text-center" >文章标题</th>
+                                <th class="text-center" >作者</th>
+                                <th class="text-center" >所属栏目</th>
+                                <th class="text-center" >是否推荐</th>
+                                <th class="text-center" >文章缩略图</th>
+                                <th class="text-center" width="14%">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- 单行数据开始 -->
+                            {volist name="result" id="article" }
+                             <tr>
+                                <!-- <td align="center">{$article.id}</td> -->
+                                <td align="center">{$article.title}</td>
+                                <td align="center">{$article.author}</td>
+                                <td align="center">{$article.catename}</td>
+                                <td align="center">
+                                {if condition="$article['state'] eq 1"}
+                                  <a href="javascript:void(0);" class="btn btn-success btn-sm shiny">推荐</a>
+                                {else /}
+                               <a href="javascript:void(0);" class="btn btn-danger btn-sm shiny">不推荐</a>
+                                {/if}
+                                 
+                                </td>
+                                <td align="center">
+                                    
+                                    {if condition="$article['pic'] neq '/uploads/default.png' "}
+                                    <img src="__STATIC__/uploads/{:$article.pic}" height="50px">
+                                    {else /}
+                                    <img src="__STATIC__/uploads/default.png"
+                                    height="50px">
+                                    {/if}
+                                    
+                                </td>
+                                <!-- 编辑 -->
+                                <td align="center">
+                                    <a href="{:url('admin/article/edi',['id'=>$article.id])}" class="btn btn-primary btn-sm shiny">
+                                        <i class="fa fa-edit"></i> 编辑
+                                    </a>
+                                <!-- 删除 -->
+                                   
+                                    <a href="#" onClick="warning('确实要删除吗？', '{:url('admin/article/del', ['id' => $article.id])}')" class="btn btn-danger btn-sm shiny">
+                                        <i class="fa fa-trash-o"></i> 删除
+                                    </a>
+                                </td>
+                            </tr>
+                            {/volist}
+                          
+                     </tbody>
+                    </table>
+                    <br/>
+                      {$result->render()}
+                </div>
+                <div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+                </div>
+                <!-- /Page Body -->
+            </div>
+            <!-- /Page Content -->
+		</div>	
+	</div>
+
+	    <!--Basic Scripts-->
+    <script src="__STATIC__/admin/style/jquery_002.js"></script>
+    <script src="__STATIC__/admin/style/bootstrap.js"></script>
+    <script src="__STATIC__/admin/style/jquery.js"></script>
+    <!--Beyond Scripts-->
+    <script src="__STATIC__/admin/style/beyond.js"></script>
+    
+
+
+</body></html>

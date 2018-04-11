@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html><head>
+	    <meta charset="utf-8">
+    <title>blog</title>
+
+    <meta name="description" content="Dashboard">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!--Basic Styles-->
+    <link href="__STATIC__/admin/style/bootstrap.css" rel="stylesheet">
+    <link href="__STATIC__/admin/style/font-awesome.css" rel="stylesheet">
+    <link href="__STATIC__/admin/style/weather-icons.css" rel="stylesheet">
+
+    <!--Beyond styles-->
+    <link id="beyond-link" href="__STATIC__/admin/style/beyond.css" rel="stylesheet" type="text/css">
+    <link href="__STATIC__/admin/style/demo.css" rel="stylesheet">
+    <link href="__STATIC__/admin/style/typicons.css" rel="stylesheet">
+    <link href="__STATIC__/admin/style/animate.css" rel="stylesheet">
+    
+</head>
+<body>
+	<!-- 头部 -->
+  {include file="common/top"/}
+	<!-- /头部 -->
+	
+	<div class="main-container container-fluid">
+		<div class="page-container">
+			<!-- Page Sidebar -->
+           {include file="common/left"/}
+            <!-- /Page Sidebar -->
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Page Breadcrumb -->
+                <div class="page-breadcrumbs">
+                    <ul class="breadcrumb">
+                                        <li>
+                        <a href="{:url('index/index')}">系统</a>
+                    </li>
+                                        <li class="active">规则管理</li>
+                                        </ul>
+                </div>
+                <!-- /Page Breadcrumb -->
+
+                <!-- Page Body -->
+                <div class="page-body">
+                    
+<button type="button" tooltip="添加新规则" class="btn btn-sm btn-azure btn-addon" onClick="javascript:window.location.href = '{:url('auth_rule_add/add')}'"> <i class="fa fa-plus"></i> Add
+</button>
+<div class="row">
+    <div class="col-lg-12 col-sm-12 col-xs-12">
+        <div class="widget">
+            <div class="widget-body">
+                <div class="flip-scroll">
+                    <table class="table table-bordered table-hover">
+                        <thead class="">
+                            <tr>
+                                 <th class="text-center" width="12%">ID</th>
+                                <th class="text-center" width="12%">规则名称</th>
+                                <th class="text-center">控制器/方法</th>
+                                <th class="text-center" width="14%">启用状态</th>
+                                <th class="text-center" width="14%">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- 单行数据开始 -->
+                            {volist name="result" id="links" }
+                             <tr>
+                                <td align="center">{$links.id}</td>
+                                <td align="center">{$links.title}</td>
+                                <td align="center">{$links.name}</td>
+                                <td align="center">
+                               {if condition="$links.status eq 1"}
+                               <a href="javascript:void(0);" class="btn btn-success btn-sm shiny">启用</a>
+                               {else /}
+                               <a href="javascript:void(0);" class="btn btn-danger btn-sm shiny">未启用</a>
+                               {/if}
+                                </td>
+                                <!-- 编辑 -->
+                                <td align="center">
+                                    <a href="{:url('admin/auth_rule_add/edi',['id'=>$links.id])}" class="btn btn-primary btn-sm shiny">
+                                        <i class="fa fa-edit"></i> 编辑
+                                    </a>
+                                <!-- 删除 -->
+                                   
+                                    <a href="#" onClick="warning('确实要删除吗？', '{:url('admin/auth_rule_add/del', ['id' => $links.id])}')" class="btn btn-danger btn-sm shiny">
+                                        <i class="fa fa-trash-o"></i> 删除
+                                    </a>
+                                </td>
+                            </tr>
+                            {/volist}
+                          
+                     </tbody>
+                    </table>
+                    <br/>
+                    {$result->render()}
+                </div>
+                <div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+                </div>
+                <!-- /Page Body -->
+            </div>
+            <!-- /Page Content -->
+		</div>	
+	</div>
+
+	    <!--Basic Scripts-->
+    <script src="__STATIC__/admin/style/jquery_002.js"></script>
+    <script src="__STATIC__/admin/style/bootstrap.js"></script>
+    <script src="__STATIC__/admin/style/jquery.js"></script>
+    <!--Beyond Scripts-->
+    <script src="__STATIC__/admin/style/beyond.js"></script>
+    
+
+
+</body></html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>文章内容</title>
+        <!-- bs的模态框样式 -->
+        <link rel="stylesheet" href="__STATIC__/bs/css/modal.css">
+        <link rel="stylesheet" href="__STATIC__/layui/css/layui.css">
+		<link href="__STATIC__/style/lady.css" type="text/css" rel="stylesheet" />
+		<script type='text/javascript' src='__STATIC__/style/ismobile.js'></script>
+        <script type="text/javascript" src="__STATIC__/jqueryui/jquery.js"></script>
+        <link rel="stylesheet" href="__STATIC__/shareandsidebar.css">
+        <link rel="stylesheet" href="__STATIC__/bs/css/tooltip.css">
+        <link rel="stylesheet" href="__STATIC__/shareandsidebar.css">
+        <link rel="stylesheet" href="__STATIC__/bs/css/pagination.css">
+        <script src="__STATIC__/bs/js/bootstrap.min.js"></script>
+    <style>
+        /*返回顶部按钮样式*/
+         .scrolltop{
+            position: absolute;
+            position: fixed;
+            left:1250px;
+            top:540px;
+            display: none;
+            
+         }
+
+</style>
+    </head>
+
+    <body>
+    <!-- 添加侧边栏 -->
+    {include file="./common/sidebar"/}
+    <!-- 添加侧边栏 -->
+
+   {include file="common/header"/}
+        <!--顶部通栏-->
+        <script src='/jiehun/goto/my-65547.js' language='javascript'></script>
+
+        <div class="position">
+            <a href="{:url('index/index/index')}">主页</a>
+             > <a href="{:url('cate/index',['cateid'=>$article[0]['cateid']])}">{$lanmu[0]['catename']}</a> >
+         </div>
+
+
+        <div class="overall">
+            <div class="left">
+               
+                <div class="scrap">
+                    <span style="font-size: 28px">标题：{$article[0]['title']}</span>
+                    <span>{include file="common/share"/}</span>
+                    <div class="spread">
+                        <span class="writor">发布时间：{$article[0]['time']|date="Y-m-d H:i:s",###}</span>
+                        <span class="writor">编辑：{$article[0]['author']}</span>
+                        <span class="writor">标签：<a href="{:url('index/cate/index',['cateid'=>$article[0]['cateid']])}">{$lanmu[0]['catename']}</a></span>
+                        <span class="writor">热度：
+                            <!-- <script src="/jiehun/plus/count.php?view=yes&aid=156214&mid=55" type='text/javascript' language="javascript">
+                            </script> -->
+                            {$article[0]['click']}
+                        </span>
+                    </div>
+                </div>
+
+                <!--百度分享-->
+             <!--    <script src='/jiehun/goto/my-65542.js' language='javascript'></script> -->
+
+                <div class="takeaway">
+                    <span class="btn arr-left"></span>
+                    <p class="jjxq">{$article[0]['desc']}</p>
+                    <span class="btn arr-right"></span>
+                </div>
+
+                  <!-- <script src='/jiehun/goto/my-65541.js' language='javascript'></script> -->
+
+                <div class="substance">
+                    <!-- 以下是内容区域 -->
+                    <div class="scrap">
+                        <div class="spread">
+                        <span class="writor">文章关键词：
+                            {$article[0]['keywords']}
+                        </span>
+                    </div>
+                    </div>
+                    
+
+           <!--  <p align="center">
+                <img alt="缩略图" border="0"  width="750" height="375" src="__STATIC__/uploads/{$article[0]['pic']}" />
+                
+            </p> -->
+            {$article[0]['content']}
+
+           </div>
+
+
+                <div class="biaoqian">
+                
+                </div>
+
+
+
+                <!--相关阅读 -->
+                <div class="xgread">
+                    <div class="til"><h4>相关阅读</h4></div>
+                    <div class="lef"><!--相关阅读主题链接-->
+                        <script src='/jiehun/goto/my-65540.js' language='javascript'></script></div>
+                    <div class="rig">
+                        <ul>
+                            {volist name='article_about' id='aa'}
+                            <li><a href='article/id/{$aa.id}.html' target="_blank">{$aa.title}</a></li>
+                            {/volist}
+
+                        </ul>
+                    </div>
+                </div>
+
+    <!--频道推荐-->
+    <div class="hotsnew">
+        <div class="til"><h4>频道推荐</h4></div>
+        <ul>
+            {volist name="$commend" id="commend"}
+            <li>
+                <div class="tu">
+                    <a href="{:url('index/article/index',['id'=>$commend.id])}" target="_blank">
+                        <img src="__STATIC__/uploads/{$commend.pic}" alt="{$commend.title}"/>
+                    </a>
+                </div>
+                <p>
+                    <a href="{:url('index/article/index',['id'=>$commend.id])}">{$commend.title}
+                    </a>
+                </p>
+
+            </li>
+            {/volist}
+
+        </ul>
+    </div>		
+            </div>
+
+         {include file='common/right'/}
+            </div>
+            <!-- 页脚 -->
+            {include file="common/footer"/}
+            <!-- 页脚 -->
+
+ <div style="display:none;"><script src='goto/my-65537.js' language='javascript'></script><script src="images/js/count_zixun.js" language="JavaScript"></script></div>
+    </body>
+    <script>
+    //返回顶部
+    $(document).ready(function(){  
+    $(".scrolltop").hide();  
+    $(function () {  
+        //设置高度  
+        var height=100;  
+        //scroll() 方法为滚动事件  
+        $(window).scroll(function(){  
+            if ($(window).scrollTop()>height){  
+                $(".scrolltop").fadeIn(500);  
+            }else{  
+                $(".scrolltop").fadeOut(500);  
+                }  
+        });  
+        $(".scrolltop").click(function(){  
+            $('body,html').animate({scrollTop:0},100);  
+            return false;  
+        });  
+    });  
+});  
+</script>
+<!-- 控制侧边栏的js代码 -->
+<script src="__STATIC__/sidebar.js"></script>
+</html>

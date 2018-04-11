@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><!--Head--><head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="login page">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!--Basic Styles-->
+    <link href="__STATIC__/admin/style/bootstrap.css" rel="stylesheet">
+    <link href="__STATIC__/admin/style/font-awesome.css" rel="stylesheet">
+    <!--Beyond styles-->
+    <link id="beyond-link" href="__STATIC__/admin/style/beyond.css" rel="stylesheet">
+    <link href="__STATIC__/admin/style/demo.css" rel="stylesheet">
+    <link href="__STATIC__/admin/style/animate.css" rel="stylesheet">
+
+    <!-- 引入jquery文件 -->
+    <script src="__STATIC__/jqueryui/jquery.js"></script>
+</head>
+<!--Head Ends-->
+   <style>
+       .text-center{
+    
+       }
+   </style>
+<!--Body-->
+  
+<body>
+    <div class="login-container animated fadeInDown">
+        <form action="" method="post">
+            <div class="loginbox bg-white">
+                <div class="loginbox-title">SIGN IN</div>
+                <div class="loginbox-textbox">
+                    <input value="admin" class="form-control" placeholder="username" name="username" type="text">
+                </div>
+                <div class="loginbox-textbox">
+                    <input class="form-control" placeholder="password" name="password" type="password" required="">
+                </div>
+                <!-- 这里写验证码部分 -->
+                <div class="loginbox-textbox">
+                    <input class="form-control" placeholder="验证码" name="yzm" type="text" required=""  >
+
+                </div>
+                <div align="center">
+                    <img id='captcha' src="{:captcha_src()}" alt="captcha" onclick="refresh()" />
+                    <a href="javascript:refresh()">看不清楚，点击刷新</a>
+                </div>
+                <div class="loginbox-submit">
+                    <input class="btn btn-primary btn-block" value="Login" type="submit">
+                </div>
+            </div>
+                <div class="logobox">
+                    <br/>
+                    <p class="text-center">欢迎登陆Mclink博客后台系统</p>
+                </div>
+        </form>
+    </div>
+    <!--Basic Scripts-->
+    <script src="__STATIC__/admin/style/jquery.js"></script>
+    <script src="__STATIC__/admin/style/bootstrap.js"></script>
+    <script src="__STATIC__/admin/style/jquery_002.js"></script>
+    <!--Beyond Scripts-->
+    <script src="__STATIC__/admin/style/beyond.js"></script>
+    <!-- 写验证码刷新代码 -->
+    <script>
+        function refresh()
+        {
+            var ts=Date.parse(new Date())/1000;
+            console.log(ts);
+            $('#captcha').attr('src','/captcha?id='+ts);
+        }
+
+
+
+    </script>
+
+
+
+
+</body><!--Body Ends--></html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html><head>
+	    <meta charset="utf-8">
+    <title>mclink 博客</title>
+
+    <meta name="description" content="Dashboard">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!--Basic Styles-->
+    <link href="__STATIC__/admin/style/bootstrap.css" rel="stylesheet">
+    <link href="__STATIC__/admin/style/font-awesome.css" rel="stylesheet">
+    <link href="__STATIC__/admin/style/weather-icons.css" rel="stylesheet">
+
+    <!--Beyond styles-->
+    <link id="beyond-link" href="__STATIC__/admin/style/beyond.css" rel="stylesheet" type="text/css">
+    <link href="__STATIC__/admin/style/demo.css" rel="stylesheet">
+    <link href="__STATIC__/admin/style/typicons.css" rel="stylesheet">
+    <link href="__STATIC__/admin/style/animate.css" rel="stylesheet">
+    <!-- 引入百度编辑器的三个js文件 -->
+    <script type="text/javascript" src="__STATIC__/admin/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" src="__STATIC__/admin/ueditor/ueditor.all.min.js"></script>
+    <script type="text/javascript" src="__STATIC__/admin/ueditor/lang/zh-cn/zh-cn.js"></script>
+    <!-- 引入jqueryUI插件 -->
+    <link rel="stylesheet" href="__STATIC__/jqueryui/jquery-ui.min.css">
+    <script src="__STATIC__/jqueryui/jquery.js"></script>
+    <script src="__STATIC__/jqueryui/jquery-ui.min.js"></script>
+
+</head>
+<body>
+	<!-- 头部 -->
+	{include file="common/top"}
+
+	<!-- /头部 -->
+	
+	<div class="main-container container-fluid">
+		<div class="page-container">
+			            <!-- Page Sidebar -->
+            {include file="common/left"}
+            <!-- /Page Sidebar -->
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Page Breadcrumb -->
+                <div class="page-breadcrumbs">
+                    <ul class="breadcrumb">
+                                        <li>
+                        <a href="{:url('admin/index/index')}">系统</a>
+                    </li>
+                                        <li>
+                        <a href="{:url('admin/article/lst')}">文章管理</a>
+                    </li>
+                                        <li class="active">修改文章</li>
+                                        </ul>
+                </div>
+                <!-- /Page Breadcrumb -->
+
+                <!-- Page Body -->
+                <div class="page-body">
+                    
+<div class="row">
+    <div class="col-lg-12 col-sm-12 col-xs-12">
+        <div class="widget">
+            <div class="widget-header bordered-bottom bordered-blue">
+                <span class="widget-caption">修改文章内容</span>
+            </div>
+            <div class="widget-body">
+                <div id="horizontal-form">
+            <form class="form-horizontal" role="form" enctype="multipart/form-data" action="" method="post">
+                        <!-- 文章标题 -->
+                         {volist name="article" id="vo"}
+                        <div class="form-group">
+                            <label for="title" class="col-sm-2 control-label no-padding-right">文章标题</label>
+                            <div class="col-sm-6">
+                                <input class="form-control" id="title" placeholder="" name="title" required="" type="text" value="{$vo.title}">
+                            </div>
+                            <p class="help-block col-sm-4 red">* 必填</p>
+                        </div>
+                        <!-- 文章作者 -->
+                        <div class="form-group">
+                            <label for="author" class="col-sm-2 control-label no-padding-right">文章作者</label>
+                            <div class="col-sm-6">
+                                <input class="form-control" id="author" placeholder="" name="author" required="" type="text" value="{$vo.author}">
+                            </div>
+                             <p class="help-block col-sm-4 red">* 必填</p>
+                        </div>  
+                            <!-- 文章所属栏目 -->
+                         <div class="form-group">
+                            <label for="desc" class="col-sm-2 control-label no-padding-right">文章栏目</label>
+                            <div class="col-sm-6">
+                               <select name="cateid">
+                                <option value='0'>请选择文章栏目</option>
+                               {volist name="cates" id="cates"}
+                                <option  value="{$cates.id}"
+                                {if condition="$vo.cateid eq $cates.id"}
+                                  selected="selected"
+                                {/if}
+                                >
+                                {if condition="$cates.id neq 0"}
+                                {$cates.catename}
+                                {/if}
+                                </option>
+                                {/volist}
+                              </select>
+                            </div>
+                             <p class="help-block col-sm-4 red">* 必选</p>
+                        </div>
+
+                        <!-- 文章关键词 -->
+                        <div class="form-group">
+                            <label for="keywords" class="col-sm-2 control-label no-padding-right">文章关键词</label>
+                            <div class="col-sm-6">
+                                <input class="form-control" id="keywords" placeholder="" name="keywords" required="" type="text" value="{$vo.keywords}">
+                            </div>
+                        </div>  
+                        <!-- 文章简介 -->
+                        <div class="form-group">
+                            <label for="desc" class="col-sm-2 control-label no-padding-right">文章简介</label>
+                            <div class="col-sm-6">
+                                <!-- <input class="form-control" id="desc" placeholder="" name="desc" required="" type="text"> -->
+                                <textarea class="form-control" name="desc" id="" cols="30" rows="3">{$vo.desc}</textarea>
+                            </div>
+                             <p class="help-block col-sm-4 red">* 必填</p>
+                        </div>  
+
+
+                        <!-- 已上传的文章缩略图 -->
+                         <div class="form-group">
+                            <label for="pic" class="col-sm-2 control-label no-padding-right">文章缩略图</label>
+                            <div class="col-sm-6">
+                                <input type="file" name="pic" id="">
+                                <br/>
+                               <span> 
+                                <img src="__STATIC__/uploads/{$vo.pic}" height="50px">
+                               </span>
+
+                            </div>
+                        
+                                
+                          
+                            
+                             <p class="help-block col-sm-4 red">* 必填</p>
+                        </div>  
+                        
+                       <!-- 文章是否推荐阅读 -->
+                        <div class="form-group">
+                            <label for="state" class="col-sm-2 control-label no-padding-right">是否推荐阅读</label>
+                            <div class="col-sm-6">
+                            <label>
+                                <input  name="state" class="checkbox-slider colored-darkorange" type="checkbox"
+                                {if condition="$vo.state==1"}
+                                checked="checked"
+                                {else/}
+                                {/if} 
+                                >
+                                <span class="text"></span>
+                            </label>
+                            </div>
+                          </div>
+                        <!-- 文章内容 -->
+                         <div class="form-group">
+                            <label for="author" class="col-sm-2 control-label no-padding-right">文章内容</label>
+                            <div class="col-sm-6">
+                              <textarea name="content" id="content" cols="30" rows="10">{$vo.content}</textarea>
+                            </div>
+                             <p class="help-block col-sm-4 red">* 必填</p>
+                           
+                        </div>  
+                        
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-danger">确认修改文章</button>
+                            </div>
+                        </div>
+                        {/volist}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+                </div>
+                <!-- /Page Body -->
+            </div>
+            <!-- /Page Content -->
+		</div>	
+	</div>
+
+	    <!--Basic Scripts-->
+    <script src="__STATIC__/admin/style/jquery_002.js"></script>
+    <script src="__STATIC__/admin/style/bootstrap.js"></script>
+    <script src="__STATIC__/admin/style/jquery.js"></script>
+    <!--Beyond Scripts-->
+    <script src="__STATIC__/admin/style/beyond.js"></script>
+    <!-- 百度编辑器的控制代码 -->
+     <script type="text/javascript">
+    //实例化编辑器
+    //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+    UE.getEditor('content',{initialFrameWidth:800,initialFrameHeight:400,});
+    </script>
+
+
+</body></html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html><head>
+	    <meta charset="utf-8">
+    <title>mclink 博客</title>
+
+    <meta name="description" content="Dashboard">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!--Basic Styles-->
+    <link href="__STATIC__/admin/style/bootstrap.css" rel="stylesheet">
+    <link href="__STATIC__/admin/style/font-awesome.css" rel="stylesheet">
+    <link href="__STATIC__/admin/style/weather-icons.css" rel="stylesheet">
+
+    <!--Beyond styles-->
+    <link id="beyond-link" href="__STATIC__/admin/style/beyond.css" rel="stylesheet" type="text/css">
+    <link href="__STATIC__/admin/style/demo.css" rel="stylesheet">
+    <link href="__STATIC__/admin/style/typicons.css" rel="stylesheet">
+    <link href="__STATIC__/admin/style/animate.css" rel="stylesheet">
+    
+    <style>
+        .auth{
+            margin-left: 100px;
+        }
+
+
+    </style>
+</head>
+<body>
+	<!-- 头部 -->
+	{include file="common/top"}
+
+	<!-- /头部 -->
+	
+	<div class="main-container container-fluid">
+		<div class="page-container">
+			            <!-- Page Sidebar -->
+            {include file="common/left"}
+            <!-- /Page Sidebar -->
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Page Breadcrumb -->
+                <div class="page-breadcrumbs">
+                    <ul class="breadcrumb">
+                                        <li>
+                        <a href="{:url('admin/auth_rule_add/index')}">系统</a>
+                    </li>
+                                        <li>
+                        <a href="{:url('admin/auth_rule_add/lst')}">用户组管理</a>
+                    </li>
+                                        <li class="active">修改用户组内容</li>
+                                        </ul>
+                </div>
+                <!-- /Page Breadcrumb -->
+
+                <!-- Page Body -->
+                <div class="page-body">
+                    
+<div class="row">
+    <div class="col-lg-12 col-sm-12 col-xs-12">
+        <div class="widget">
+            <div class="widget-header bordered-bottom bordered-blue">
+                <span class="widget-caption">修改用户组信息</span>
+            </div>
+            <div class="widget-body">
+                <div id="horizontal-form">
+                    {volist name='group' id='group'}
+                    <form class="form-horizontal" role="form" action="" method="post">
+                        <input type="hidden" name="id" value="{$group.id}">
+                        <div class="form-group">
+                            <label for="title" class="col-sm-2 control-label no-padding-right">用户组名称</label>
+                            <div class="col-sm-6">
+                                <input class="form-control" id="title" placeholder="" name="title" value="{$group.title}"  type="text">
+                            </div>
+                            <p class="help-block col-sm-4 red">* 必填</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="group_id" class="col-sm-2 control-label no-padding-right">拥有的权限</label>
+                            <div class="col-sm-6">
+                                <input class="form-control" id="name" placeholder="" name="rules"  type="text" value="{$group.rules}">
+                            </div>
+                            <p class="help-block col-sm-4 red">* 必填</p>
+                            </div>
+
+                            <div class="form-group">
+                            <label for="group_id" class="col-sm-2 control-label no-padding-right">是否启用</label>
+                            <div class="col-sm-6">
+                               <label>
+                                   <input class="checkbox-slider colored-darkorange " type="checkbox"
+                                     name="status"
+                                    {if condition="$group.status eq 1"}
+                                    checked="" value="1" 
+                                    {else /}
+                                    {/if}
+                                   >
+                                    <span class="text"></span>
+                               </label>
+                            </div>
+                            </div>
+                            
+                                <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-danger">保存信息</button>
+                            </div>
+                        </div>
+                        </div>  
+                        {/volist}
+                    </form>
+                <div class="auth">
+                        <p>权限对应说明：</p>
+                           <!-- 规则列表说明 -->
+                          {foreach $rules as $vo}
+                              
+                             <span id="labeltip" class="label label-primary small"display: inline-block >{$vo.id}:{$vo.title}</span>&nbsp;
+
+                              
+                         {/foreach}
+                </div>    
+          
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+                </div>
+                <!-- /Page Body -->
+            </div>
+            <!-- /Page Content -->
+		</div>	
+	</div>
+
+	    <!--Basic Scripts-->
+    <script src="__STATIC__/admin/style/jquery_002.js"></script>
+    <script src="__STATIC__/admin/style/bootstrap.js"></script>
+    <script src="__STATIC__/admin/style/jquery.js"></script>
+    <!--Beyond Scripts-->
+    <script src="__STATIC__/admin/style/beyond.js"></script>
+    
+
+
+</body></html>
