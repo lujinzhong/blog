@@ -197,7 +197,7 @@
 				//这里注意，我们已经设置好了表前缀，但是使用
 				//table()的话是要完整表名的，表前缀无效，所以这里使用name()
 				//注意要验证的是文件，而不是文件名，下面我再修改$data['pic']
-				$data['pic']=$newpath;
+				//$data['pic']=$newpath;
 				$result=Db::name('article')->where('id',$id)->update($data);
 				if($result)
 				{
